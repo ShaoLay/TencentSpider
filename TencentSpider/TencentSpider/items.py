@@ -10,6 +10,7 @@ import scrapy
 
 class TencentspiderItem(scrapy.Item):
     # define the fields for your item here like:
+
     title = scrapy.Field()
     bu_men = scrapy.Field()
     work_address = scrapy.Field()
