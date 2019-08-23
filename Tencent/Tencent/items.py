@@ -23,4 +23,3 @@ class TencentItem(scrapy.Item):
     work_time = scrapy.Field()
     # 招聘链接
     work_link = scrapy.Field()
-
