@@ -23,3 +23,9 @@ class TencentItem(scrapy.Item):
     work_time = scrapy.Field()
     # 招聘链接
     work_link = scrapy.Field()
+
+class TencentDetailItem(scrapy.Item):
+    # 职责
+    work_duty = scrapy.Field()
+    # 要求
+    work_requir = scrapy.Field()
