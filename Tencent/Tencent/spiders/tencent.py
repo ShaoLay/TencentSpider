@@ -4,7 +4,7 @@ import re
 
 import scrapy
 
-from Tencent.items import TencentItem, TencentDetailItem
+from Tencent.items import TencentItem
 
 
 class TencentSpider(scrapy.Spider):
@@ -15,7 +15,6 @@ class TencentSpider(scrapy.Spider):
     url_list = []
     for page in range(1, 507):
         url = begin_url + str(page) + end_url
-        print('我是url:', url)
         url_list.append(url)
 
     start_urls = url_list
@@ -41,12 +40,12 @@ class TencentSpider(scrapy.Spider):
 
             yield item
 
-            yield scrapy.Request(detail_link, callback=self.details_parse)
+            yield scrapy.Request(detail_link, meta={'keyitem':item}, callback=self.details_parse)
 
     def details_parse(self, response):
         site = json.loads(response.body_as_unicode())
         site = site['Data']
-        item = TencentDetailItem()
+        item = response.meta['keyitem']
         item['work_duty'] = site['Responsibility']
         item['work_requir'] = site['Requirement']
         yield item
